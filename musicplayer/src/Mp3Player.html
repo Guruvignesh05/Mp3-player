@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color:#333;
+        }
+
+        #music-player {
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="music-player">
+    <audio id="audio-player" controls>
+        <source src="Goa.mp3" type="audio/mp3">
+
+    </audio>
+    <div>
+        <button onclick="playPause()">Play/Pause</button>
+        <button onclick="nextTrack()">Next</button>
+        <button onclick="addToQueue()">Add to Queue</button>
+    </div>
+</div>
+
+<script>
+    var audioPlayer = document.getElementById('audio-player');
+    var queue = ['Hukum-Tiger-Ka-Hukum_320(PagalWorld).mp3', 'Yethi-Yethi-MassTamilan.com.mp3', 'Idhu-Varai.mp3'];
+    var currentTrack = 0;
+
+    function playPause() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+        } else {
+            audioPlayer.pause();
+        }
+    }
+
+    function nextTrack() {
+        currentTrack = (currentTrack + 1) % queue.length;
+        audioPlayer.src = queue[currentTrack];
+        audioPlayer.play();
+    }
+
+    function addToQueue() {
+        console.log('Added to Queue');
+    }
+</script>
+</body>
+</html>
